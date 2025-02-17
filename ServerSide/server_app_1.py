@@ -1,7 +1,7 @@
 # Using flask to make an api
 # import necessary libraries and functions
 import read_data_file as file_reader
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template
 
 # creating a Flask app
 app = Flask(__name__)
@@ -17,6 +17,11 @@ def home():
     if request.method == "GET":
         response["data"] = file_reader.get_file_contents_as_json()
         return response
+
+
+@app.route("/", methods=["GET"])
+def homepage():
+    return render_template("SAMP_Architecture_1.html")
 
 
 # A simple function to calculate the square of a number
