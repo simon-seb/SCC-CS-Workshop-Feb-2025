@@ -7,6 +7,7 @@ Three-hour workshop at SCC - Department of Computer Science UG
 		
 		Serverside:
 			server_app_1: Main web app with controller
-			read_csv: CSV Reader
-			Data files: A simple DBMS implementation using the file management system
-			
+			read_data_file: CSV Reader
+			Data files: A very simple DBMS implementation using the file management system
+		
+		Fork this REPO to extend useage, please feel free to modify and explore working with Flask API and dynamic WebPages. TY ♥
