@@ -1,6 +1,6 @@
 # Using flask to make an api
 # import necessary libraries and functions
-import read_csv as csv_reader
+import read_data_file as file_reader
 from flask import Flask, jsonify, request
 
 # creating a Flask app
@@ -10,12 +10,13 @@ app = Flask(__name__)
 # on the terminal type: curl http://127.0.0.1:5000/
 # returns hello world when we use GET.
 # returns the data that we send when we use POST.
-@app.route("/", methods=["GET", "POST"])
+@app.route("/resources", methods=["GET", "POST"])
 def home():
-    if request.method == "GET":
+    response = {"data": ""}
 
-        data = "hello world"
-        return jsonify({"data": data})
+    if request.method == "GET":
+        response["data"] = file_reader.get_file_contents_as_json()
+        return response
 
 
 # A simple function to calculate the square of a number
