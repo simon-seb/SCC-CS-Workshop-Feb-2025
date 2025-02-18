@@ -23,7 +23,7 @@ def get_file_contents_as_json():
 
 def write_to_file(headers, data):
     with open(contact_us_cta, mode="a+") as file:
-        file.seek(0) # Set file pointer to SOF
+        file.seek(0) # Set file pointer to BOF
         
         if 1 > len(file.readlines()):
             file.write(str(headers)) # Write headers if file content NULL
