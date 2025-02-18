@@ -1,10 +1,8 @@
 import csv
 
 # Open the CSV file
-resources_data_1 = "C:\CodeBox\SCC-CS-Workshop-Feb-2025\ServerSide\FDMS\data_file_1.csv"
-contact_us_cta = (
-    "C:\CodeBox\SCC-CS-Workshop-Feb-2025\ServerSide\FDMS\contact_us_cta.csv"
-)
+resources_data_1 = "FDMS/data_file_1.csv"
+contact_us_cta = "FDMS/contact_us_cta.csv"
 
 
 def get_file_contents_as_json():
@@ -23,10 +21,10 @@ def get_file_contents_as_json():
 
 def write_to_file(headers, data):
     with open(contact_us_cta, mode="a+") as file:
-        file.seek(0) # Set file pointer to BOF
-        
+        file.seek(0)  # Set file pointer to BOF
+
         if 1 > len(file.readlines()):
-            file.write(str(headers)) # Write headers if file content NULL
+            file.write(str(headers))  # Write headers if file content NULL
 
         file.write(str(data))
         file.write("\n")
