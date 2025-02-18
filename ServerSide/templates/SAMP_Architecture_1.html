@@ -167,6 +167,10 @@
 
       <div class="w3-row-padding w3-grayscale" id="team-block-1">
         <script>
+          function contactUsSubmitAction() {
+            alert("Response successfully recorded!");
+          }
+
           // CHECK - Add logic get_employee_details - 13-FEB-2025
           function loadEmployees() {
             // Creating Our XMLHttpRequest object
@@ -227,7 +231,7 @@
           Contact
         </h3>
         <p>Lets get in touch and talk about your next project.</p>
-        <form action="/action_page.php" target="_blank">
+        <form action="/contact_us" method="post" enctype="multipart/form-data">
           <input
             class="w3-input w3-border"
             type="text"
@@ -256,7 +260,11 @@
             required
             name="Comment"
           />
-          <button class="w3-button w3-black w3-section" type="submit">
+          <button
+            class="w3-button w3-black w3-section"
+            type="submit"
+            onclick="contactUsSubmitAction()"
+          >
             <i class="fa fa-paper-plane"></i> SEND MESSAGE
           </button>
         </form>

@@ -1,7 +1,10 @@
 # Using flask to make an api
 # import necessary libraries and functions
-import read_data_file as file_reader
-from flask import Flask, jsonify, request, render_template
+import file_reader_writer as file_reader
+from flask import Flask, jsonify, request, render_template, redirect, url_for
+import json
+
+# from flask_api import status
 
 # creating a Flask app
 app = Flask(__name__)
@@ -17,6 +20,29 @@ def home():
     if request.method == "GET":
         response["data"] = file_reader.get_file_contents_as_json()
         return response
+
+
+# Contact Us CTA
+@app.route("/contact_us", methods=["POST"])
+def contact_us():
+    form_data = ""
+    headers = "Name,Email,Subject,Comment\n"
+
+    form_data = (
+        form_data
+        + request.form["Name"]
+        + ","
+        + request.form["Email"]
+        + ","
+        + request.form["Subject"]
+        + ","
+        + request.form["Comment"]
+    )
+
+    # print("Values:", jsonify(request))
+    file_reader.write_to_file(headers, form_data)
+
+    return render_template("SAMP_Architecture_1.html")
 
 
 @app.route("/", methods=["GET"])
