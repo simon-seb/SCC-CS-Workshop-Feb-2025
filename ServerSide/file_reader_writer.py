@@ -1,14 +1,13 @@
 import csv
 
-# Open the CSV file
+# CSV file paths
 resources_data_1 = "FDMS/data_file_1.csv"
 contact_us_cta = "FDMS/contact_us_cta.csv"
 
 
 def get_file_contents_as_json():
     with open(resources_data_1, mode="r") as file:
-        # Create a CSV reader object
-        csv_reader = csv.DictReader(file)
+        csv_reader = csv.DictReader(file)  # Create a CSV reader object
         data = {}
         index = 0
 

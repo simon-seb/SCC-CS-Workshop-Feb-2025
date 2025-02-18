@@ -4,8 +4,6 @@ import file_reader_writer as file_reader
 from flask import Flask, jsonify, request, render_template, redirect, url_for
 import json
 
-# from flask_api import status
-
 # creating a Flask app
 app = Flask(__name__)
 
@@ -39,7 +37,6 @@ def contact_us():
         + request.form["Comment"]
     )
 
-    # print("Values:", jsonify(request))
     file_reader.write_to_file(headers, form_data)
 
     return render_template("SAMP_Architecture_1.html")
