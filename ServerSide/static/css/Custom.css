@@ -57,6 +57,9 @@
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   width: 100%;
+  max-height: 400px;
+  position: relative;
+  overflow-y: auto;
 }
 
 .csv-data-container td,
@@ -79,4 +82,9 @@
   text-align: left;
   background-color: #04aa6d;
   color: white;
+}
+
+.thead-custom {
+  position: sticky;
+  top: 0px;
 }

@@ -44,6 +44,7 @@
             Resources
           </a>
           <a
+            href="#ContactUs"
             class="w3-bar-item w3-button"
             onclick="toggleTab(event, 'ContactUs')"
           >
@@ -81,7 +82,9 @@
       <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">
         Contact Us
       </h3>
-      <div id="contact_us_container" class="csv-data-container"></div>
+      <div class="table-container">
+        <div id="contact_us_container" class="csv-data-container"></div>
+      </div>
       <br />
       <p>Lets get in touch and talk about your next project.</p>
     </div>
@@ -226,6 +229,11 @@
           console.info("Count: " + count);
           resources = data["data"]["resources"];
 
+          // Create a sticky table header
+          let thead = document.createElement("thead");
+          thead.setAttribute("class", "thead-custom");
+          tableBody.appendChild(thead);
+
           // Add resource fields as table headers
           const headerRow = document.createElement("tr");
           const headerFields = Object.keys(resources[0]);
@@ -235,10 +243,10 @@
               headerCell.width = "20%";
             }
             headerCell.textContent = headerText;
-            headerRow.append(headerCell);
+            thead.append(headerCell);
           });
 
-          tableBody.appendChild(headerRow);
+          // tableBody.appendChild(headerRow);
 
           for (var index = 0; index < parseInt(count); index++) {
             const row = document.createElement("tr");
@@ -277,13 +285,19 @@
           resources = data["data"]["contact_us"];
 
           // Add resource fields as table headers
+          let thead = document.createElement("thead");
+          thead.setAttribute("class", "thead-custom");
+          tableBody.appendChild(thead);
+
           const headerRow = document.createElement("tr");
           const headerFields = Object.keys(resources[0]);
           headerFields.forEach((headerText) => {
             const headerCell = document.createElement("th");
             headerCell.textContent = headerText;
-            headerRow.append(headerCell);
+            thead.appendChild(headerCell);
           });
+
+          // thead.appendChild(headerRow);
 
           tableBody.appendChild(headerRow);
 

@@ -67,7 +67,7 @@ def contact_us():
 
     if "GET" == request.method:
         response = {"data": ""}
-        
+
         response["data"] = file_reader.get_file_contents_as_json("CON")
         return response
 
