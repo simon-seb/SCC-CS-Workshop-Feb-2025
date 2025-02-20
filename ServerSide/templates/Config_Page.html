@@ -28,9 +28,27 @@
         <a href="/" class="w3-bar-item w3-button"><b>BR</b> Architects</a>
         <!-- Float links to the right. Hide them on small screens -->
         <div class="w3-right w3-hide-small">
-          <a href="#projects" class="w3-bar-item w3-button">Projects</a>
-          <a href="#about" class="w3-bar-item w3-button">About</a>
-          <a href="#contact" class="w3-bar-item w3-button">Contact</a>
+          <!-- Tab links -->
+          <a
+            href="#Models"
+            class="w3-bar-item w3-button"
+            onclick="toggleTab(event, 'Models')"
+          >
+            Models
+          </a>
+          <a
+            href="#Resources"
+            class="w3-bar-item w3-button"
+            onclick="toggleTab(event, 'Resources')"
+          >
+            Resources
+          </a>
+          <a
+            class="w3-bar-item w3-button"
+            onclick="toggleTab(event, 'ContactUs')"
+          >
+            Contact Us
+          </a>
         </div>
       </div>
     </div>
@@ -57,21 +75,6 @@
     </header>
     <!-- Tab Section -->
     <!-- <script src="static/js/csv_to_html_table.js"></script> -->
-
-    <!-- Tab links -->
-    <div class="tab">
-      <a href="#Models">
-        <button class="tablinks" onclick="toggleTab(event, 'Models')">
-          Models
-        </button>
-      </a>
-      <button class="tablinks" onclick="toggleTab(event, 'Resources')">
-        Resources
-      </button>
-      <button class="tablinks" onclick="toggleTab(event, 'ContactUs')">
-        Contact Us
-      </button>
-    </div>
 
     <!-- Contact Us -->
     <div class="w3-container w3-padding-32 tabcontent" id="ContactUs">
