@@ -1,0 +1,305 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>W3.CSS Template</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="static/css/Architecture.css" />
+    <link rel="stylesheet" href="static/css/Custom.css" />
+    <link rel="script" href="static/js/csv_to_html_table.js" />
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+      integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css"
+    />
+  </head>
+  <body>
+    <!-- Navbar (sit on top) -->
+    <div class="w3-top">
+      <div class="w3-bar w3-white w3-wide w3-padding w3-card">
+        <a href="/" class="w3-bar-item w3-button"><b>BR</b> Architects</a>
+        <!-- Float links to the right. Hide them on small screens -->
+        <div class="w3-right w3-hide-small">
+          <a href="#projects" class="w3-bar-item w3-button">Projects</a>
+          <a href="#about" class="w3-bar-item w3-button">About</a>
+          <a href="#contact" class="w3-bar-item w3-button">Contact</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Header -->
+    <header
+      class="w3-display-container w3-content w3-wide"
+      style="max-width: 1500px"
+      id="home"
+    >
+      <img
+        class="w3-image"
+        src="static/Media/architect.jpg"
+        alt="Architecture"
+        width="1500"
+        height="800"
+      />
+      <div class="w3-display-middle w3-margin-top w3-center">
+        <h1 class="w3-xxlarge w3-text-white">
+          <span class="w3-padding w3-black w3-opacity-min"><b>BR</b></span>
+          <span class="w3-hide-small w3-text-light-grey">Architects</span>
+        </h1>
+      </div>
+    </header>
+    <!-- Tab Section -->
+    <!-- <script src="static/js/csv_to_html_table.js"></script> -->
+
+    <!-- Tab links -->
+    <div class="tab">
+      <a href="#Models">
+        <button class="tablinks" onclick="toggleTab(event, 'Models')">
+          Models
+        </button>
+      </a>
+      <button class="tablinks" onclick="toggleTab(event, 'Resources')">
+        Resources
+      </button>
+      <button class="tablinks" onclick="toggleTab(event, 'ContactUs')">
+        Contact Us
+      </button>
+    </div>
+
+    <!-- Contact Us -->
+    <div class="w3-container w3-padding-32 tabcontent" id="ContactUs">
+      <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">
+        Contact Us
+      </h3>
+      <div id="contact_us_container" class="csv-data-container"></div>
+      <br />
+      <p>Lets get in touch and talk about your next project.</p>
+    </div>
+
+    <!-- Resources -->
+    <div class="w3-container w3-padding-32 tabcontent" id="Resources">
+      <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">
+        Resources
+      </h3>
+      <div id="resources-container" class="csv-data-container"></div>
+      <br />
+      <h4 class="w3-border-bottom w3-border-light-grey w3-padding-16">
+        Add New
+      </h4>
+      <p>Lets get in touch and talk about your next project.</p>
+      <form
+        action="/update_resources"
+        method="post"
+        enctype="multipart/form-data"
+      >
+        <input
+          class="w3-input w3-border"
+          type="text"
+          placeholder="Image URL"
+          required
+          name="image_url"
+        />
+        <input
+          class="w3-input w3-section w3-border"
+          type="text"
+          placeholder="Name"
+          required
+          name="name"
+        />
+        <input
+          class="w3-input w3-section w3-border"
+          type="text"
+          placeholder="Designation"
+          required
+          name="designation"
+        />
+        <input
+          class="w3-input w3-section w3-border"
+          type="text"
+          placeholder="Description"
+          required
+          name="description"
+        />
+        <button
+          class="w3-button w3-black w3-section"
+          type="submit"
+          onclick="contactUsSubmitAction()"
+        >
+          <i class="fa fa-paper-plane"></i> Add Resource
+        </button>
+      </form>
+    </div>
+
+    <!-- Models -->
+    <div class="w3-container w3-padding-32 tabcontent" id="Models">
+      <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">
+        Models
+      </h3>
+      <p>Lets get in touch and talk about your next project.</p>
+      <form action="/contact_us" method="post" enctype="multipart/form-data">
+        <input
+          class="w3-input w3-border"
+          type="text"
+          placeholder="Name"
+          required
+          name="Name"
+        />
+        <input
+          class="w3-input w3-section w3-border"
+          type="text"
+          placeholder="Email"
+          required
+          name="Email"
+        />
+        <input
+          class="w3-input w3-section w3-border"
+          type="text"
+          placeholder="Subject"
+          required
+          name="Subject"
+        />
+        <input
+          class="w3-input w3-section w3-border"
+          type="text"
+          placeholder="Comment"
+          required
+          name="Comment"
+        />
+        <button
+          class="w3-button w3-black w3-section"
+          type="submit"
+          onclick="contactUsSubmitAction()"
+        >
+          <i class="fa fa-paper-plane"></i> SEND MESSAGE
+        </button>
+      </form>
+    </div>
+    <script>
+      function toggleTab(evt, tabName) {
+        // Declare all variables
+        var i, tabcontent, tablinks;
+
+        // Get all elements with class="tabcontent" and hide them
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+          tabcontent[i].style.display = "none";
+        }
+
+        // Get all elements with class="tablinks" and remove the class "active"
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+          tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+
+        // Show the current tab, and add an "active" class to the button that opened the tab
+        document.getElementById(tabName).style.display = "block";
+        evt.currentTarget.className += " active";
+      }
+
+      // Replace with your external URL
+      let url = "/resources";
+
+      fetch(url)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          return response.json();
+        })
+        .then((data) => {
+          const tableBody = document.querySelector("#resources-container");
+
+          data = JSON.stringify(data);
+          data = JSON.parse(data);
+
+          var count = data["data"]["count"];
+          console.info("Count: " + count);
+          resources = data["data"]["resources"];
+
+          // Add resource fields as table headers
+          const headerRow = document.createElement("tr");
+          const headerFields = Object.keys(resources[0]);
+          headerFields.forEach((headerText) => {
+            const headerCell = document.createElement("th");
+            if ("image_url" == headerText) {
+              headerCell.width = "20%";
+            }
+            headerCell.textContent = headerText;
+            headerRow.append(headerCell);
+          });
+
+          tableBody.appendChild(headerRow);
+
+          for (var index = 0; index < parseInt(count); index++) {
+            const row = document.createElement("tr");
+            item = resources[index];
+
+            row.innerHTML = `
+								 <td>${item.description}</td>
+								 <td>${item.designation}</td>
+								 <td><img src="${item.image_url}" alt="${item.name}" style="width: 20%"/></td>
+								 <td>${item.name}</td>
+						 `;
+            tableBody.appendChild(row);
+          }
+        })
+        .catch((error) => {
+          console.error("There was a problem with the fetch operation:", error);
+        });
+
+      url = "/contact_us";
+
+      fetch(url)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          return response.json();
+        })
+        .then((data) => {
+          const tableBody = document.querySelector("#contact_us_container");
+
+          data = JSON.stringify(data);
+          data = JSON.parse(data);
+
+          var count = data["data"]["count"];
+          console.info("Count: " + count);
+          resources = data["data"]["contact_us"];
+
+          // Add resource fields as table headers
+          const headerRow = document.createElement("tr");
+          const headerFields = Object.keys(resources[0]);
+          headerFields.forEach((headerText) => {
+            const headerCell = document.createElement("th");
+            headerCell.textContent = headerText;
+            headerRow.append(headerCell);
+          });
+
+          tableBody.appendChild(headerRow);
+
+          for (var index = 0; index < parseInt(count); index++) {
+            const row = document.createElement("tr");
+            item = resources[index];
+
+            row.innerHTML = `
+								 <td>${item.Name}</td>
+								 <td>${item.Email}</td>
+								 <td>${item.Subject}</td>
+								 <td>${item.Comment}</td>
+						 `;
+            tableBody.appendChild(row);
+          }
+        })
+        .catch((error) => {
+          console.error("There was a problem with the fetch operation:", error);
+        });
+    </script>
+  </body>
+</html>

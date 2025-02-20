@@ -16,35 +16,70 @@ def home():
     response = {"data": ""}
 
     if request.method == "GET":
-        response["data"] = file_reader.get_file_contents_as_json()
+        response["data"] = file_reader.get_file_contents_as_json("RES")
         return response
 
 
-# Contact Us CTA
-@app.route("/contact_us", methods=["POST"])
-def contact_us():
+# Write Resources data to CSV
+@app.route("/update_resources", methods=["POST"])
+def update_resources():
     form_data = ""
-    headers = "Name,Email,Subject,Comment\n"
+    headers = "image_url,name,designation,description\n"
 
     form_data = (
         form_data
-        + request.form["Name"]
+        + request.form["image_url"]
         + ","
-        + request.form["Email"]
+        + request.form["name"]
         + ","
-        + request.form["Subject"]
+        + request.form["designation"]
         + ","
-        + request.form["Comment"]
+        + request.form["description"]
     )
 
-    file_reader.write_to_file(headers, form_data)
+    file_reader.write_to_file(headers, form_data, "RES")
 
-    return render_template("SAMP_Architecture_1.html")
+    return render_template("Config_Page.html")
+
+
+# Contact Us CTA
+@app.route("/contact_us", methods=["GET", "POST"])
+def contact_us():
+
+    if request.method == "POST":
+        form_data = ""
+        headers = "Name,Email,Subject,Comment\n"
+
+        form_data = (
+            form_data
+            + request.form["Name"]
+            + ","
+            + request.form["Email"]
+            + ","
+            + request.form["Subject"]
+            + ","
+            + request.form["Comment"]
+        )
+
+        file_reader.write_to_file(headers, form_data, "CON")
+
+        return render_template("SAMP_Architecture_1.html")
+
+    if "GET" == request.method:
+        response = {"data": ""}
+        
+        response["data"] = file_reader.get_file_contents_as_json("CON")
+        return response
 
 
 @app.route("/", methods=["GET"])
 def homepage():
     return render_template("SAMP_Architecture_1.html")
+
+
+@app.route("/config", methods=["GET"])
+def config_page():
+    return render_template("Config_Page.html")
 
 
 # A simple function to calculate the square of a number
